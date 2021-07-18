@@ -1,14 +1,15 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/pingwin
-    username: postgres
-    password: prozniecki600
+    url: "jdbc:${dbRDBMS}://${dbHost}:${dbPort}/${dbDatabase}"
+    username: $dbUsername
+    password: $dbPassword
   devtools:
     restart:
       enabled: true
   jpa:
     hibernate:
       ddl-auto: validate
+    open-in-view: false
     show-sql: true
   security:
     user:

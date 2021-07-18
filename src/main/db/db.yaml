@@ -1,0 +1,38 @@
+databaseChangeLog:
+  - changeSet:
+      id: '1'
+      author: regulskimichal
+      changes:
+        - createSequence:
+            cycle: true
+            sequenceName: products_seq
+            incrementBy: 2
+            startValue: 1
+            dataType: bigint
+        - createTable:
+            tableName: products
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  defaultValueSequenceNext: products_seq
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: text
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: numeric
+              - column:
+                  name: category
+                  type: text
+              - column:
+                  name: description
+                  type: text
+              - column:
+                  name: image_url
+                  type: text
