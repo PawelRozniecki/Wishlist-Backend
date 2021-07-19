@@ -24,4 +24,8 @@ public class Product implements Serializable {
     String category;
     String description;
     String imageUrl;
+    // status 0 means product is not yet bought, status 1 means product is bought
+    Boolean status;
+
+
 }

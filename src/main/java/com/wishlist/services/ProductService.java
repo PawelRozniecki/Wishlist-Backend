@@ -28,6 +28,7 @@ public class ProductService {
 
     @Transactional
     public Product addProduct(Product product) {
+        product.setStatus(false);
         return productRepository.save(product);
     }
 
