@@ -21,15 +21,7 @@ package com.wishlist.enums;
         Categories(final String category){this.category = category;}
         public  String getCategory(){return category;}
 
-        public static String getCategory(String category){
-            if(category == null)
-                return null;
-            for (Categories c: values()){
-                if(c.getCategory().equals(category))
-                    return c.getCategory();
-            }
-            return null;
-        }
+
 
 
     }
