@@ -1,5 +1,6 @@
 package com.wishlist.model;
 
+import com.wishlist.enums.Statuses;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
@@ -25,7 +26,7 @@ public class Product implements Serializable {
     String description;
     String imageUrl;
     // status 0 means product is not yet bought, status 1 means product is bought
-    Boolean status;
+    Statuses status;
 
 
 }

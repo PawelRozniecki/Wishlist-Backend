@@ -1,5 +1,6 @@
 package com.wishlist.services;
 
+import com.wishlist.enums.Statuses;
 import com.wishlist.exceptions.ProductNotFoundException;
 import com.wishlist.model.Product;
 import com.wishlist.repositories.ProductRepository;
@@ -28,7 +29,7 @@ public class ProductService {
 
     @Transactional
     public Product addProduct(Product product) {
-        product.setStatus(false);
+        product.setStatus(Statuses.NOT_PURCHASED);
         return productRepository.save(product);
     }
 
