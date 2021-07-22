@@ -1,6 +1,7 @@
 package com.wishlist.services;
 
 import com.wishlist.model.User;
+import com.wishlist.registration.token.ConfirmToken;
 import com.wishlist.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -10,6 +11,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.UUID;
+
 @Service
 @AllArgsConstructor
 @Slf4j
@@ -17,6 +21,7 @@ public class UserService implements UserDetailsService {
     private final static String USER_NOT_FOUND_ERR_MSG = "User %s not found";
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
+    private final TokenService tokenService;
 
 
     @Override
@@ -36,7 +41,22 @@ public class UserService implements UserDetailsService {
 
        userRepository.save(user);
 
+       String token = UUID.randomUUID().toString();
+       ConfirmToken confirmToken = new ConfirmToken(
+               token,
+               LocalDateTime.now(),
+               LocalDateTime.now().plusMinutes(15),
+               user);
+
+       tokenService.saveConfirmToken(confirmToken);
+
        // TODO : Send confirmation token
-       return "Sign up complete";
+
+
+       return token;
+    }
+
+    public int enableUser(String email) {
+        return userRepository.enableAppUser(email);
     }
 }
