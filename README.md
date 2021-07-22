@@ -19,3 +19,17 @@ or after importing the project to IntelliJ IDEA, start `Compose Deployment` and 
 
 We use Liquibase for SQL migrations. To start the migration, run `./gradlew update` or IntelliJ
 configuration `Liquibase migration`
+
+
+## Email Setup 
+
+Install Maildev to test email verification
+
+```
+$ sudo npm install -g maildev
+$ maildev
+```
+
+This will start SMPT server on port 1025.
+Web App will run on port 1080. 
+
