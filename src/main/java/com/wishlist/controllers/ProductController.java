@@ -3,6 +3,7 @@ package com.wishlist.controllers;
 import com.wishlist.exceptions.ProductNotFoundException;
 import com.wishlist.model.Product;
 import com.wishlist.services.ProductService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Slf4j
 @RequestMapping("/product")
+@CrossOrigin(origins = "http://localhost:4200")
+
 public class ProductController {
 
     private final ProductService productService;
@@ -22,6 +26,8 @@ public class ProductController {
     @PostMapping
     public ResponseEntity<Product> add(@RequestBody Product product) {
         final var newProduct = productService.addProduct(product);
+        log.info(String.valueOf(newProduct));
+
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 

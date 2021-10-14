@@ -11,7 +11,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ProductNotFoundException.class)
     public ResponseEntity<?> productNotFoundExceptionHandler(ProductNotFoundException exception) {
+
         log.error("Product not found", exception);
         return ResponseEntity.notFound().build();
+
     }
+
 }
